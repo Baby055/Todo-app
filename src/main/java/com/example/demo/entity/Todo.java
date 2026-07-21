@@ -18,7 +18,7 @@ import java.util.UUID;
 public class Todo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private UUID uuid;
     private String title;
