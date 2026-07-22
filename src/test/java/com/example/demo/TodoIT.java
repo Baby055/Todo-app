@@ -2,6 +2,7 @@ package com.example.demo;
 
 import com.example.demo.entity.Todo;
 import com.example.demo.repository.TodoRepository;
+import lombok.Data;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,6 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.ActiveProfiles;
 
 import java.time.Instant;
 import java.util.UUID;
@@ -19,16 +19,13 @@ import java.util.UUID;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ActiveProfiles("dev")
-class TodoIT implements TestcontainersInitializer{
+class TodoIT implements TestcontainersInitializer {
+
     @Autowired
     TodoRepository todoRepository;
 
     @Autowired
     private TestRestTemplate restTemplate;
-
-    @Autowired
-    private TodoRepository todoRepository2;
 
     private Todo savedTodo;
 
@@ -56,9 +53,9 @@ class TodoIT implements TestcontainersInitializer{
     }
 
     @Test
-    void update_existingTodo_returnsUpdatedTodo() {
+        void update_existingTodo_returnsUpdatedTodo() {
         savedTodo.setTitle("Titre modifié");
-        savedTodo.setIs_                                                                                                                                                                                                                                                                                                                         completed(true);
+        savedTodo.setCompleted(true);
 
         HttpEntity<Todo> requestEntity = new HttpEntity<>(savedTodo);
         ResponseEntity<Todo> response = restTemplate.exchange(

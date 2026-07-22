@@ -24,7 +24,7 @@ public class Todo {
     private UUID uuid;
     private String title;
     private String description;
-    private boolean is_completed;
+    private boolean completed;
     private Instant created_at;
     private Instant updated_at;
 }
